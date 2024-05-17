@@ -35,6 +35,8 @@ The `JAVA PROJECTS` view allows you to manage your dependencies. More details ca
     >Gnatt chart (not done)
 
 ## TODO
+- Add gitignore
+- ADD .env (idk if we'd really need it if we are just sharing with him)
 
 - SOFTWARE REPORT
 
