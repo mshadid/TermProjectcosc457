@@ -1,0 +1,12 @@
+# Ignore .env file
+# .env
+
+# Ignore bin directory
+/bin
+
+# Ignore VS Code settings
+.vscode/
+
+# Ignore other unnecessary files
+*.class
+*.log
