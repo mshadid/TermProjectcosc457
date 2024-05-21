@@ -1,0 +1,91 @@
+CREATE TABLE position (
+    position_id VARCHAR,
+    position VARCHAR,
+    PRIMARY KEY (position_id)
+);
+CREATE TABLE departments (
+    dept_no VARCHAR,
+    dept_name VARCHAR,
+    PRIMARY KEY (dept_no)
+);
+CREATE TABLE job_openings (
+    opening_id INT AUTO_INCREMENT,
+    position_id VARCHAR,
+    dept_no VARCHAR,
+    opening_date DATE,
+    closing_date DATE,
+    PRIMARY KEY (opening_id),
+    FOREIGN KEY (position_id) REFERENCES position (position_id),
+    FOREIGN KEY (dept_no) REFERENCES departments (dept_no)
+);
+CREATE TABLE application_status (
+    application_id INT AUTO_INCREMENT,
+    applicant_id INT,
+    opening_id INT,
+    status VARCHAR,
+    status_date DATE,
+    PRIMARY KEY (application_id),
+    FOREIGN KEY (applicant_id) REFERENCES applicants (applicant_id),
+    FOREIGN KEY (opening_id) REFERENCES job_openings (opening_id)
+);
+CREATE TABLE applicants (
+    applicant_id INT AUTO_INCREMENT,
+    first_name VARCHAR,
+    last_name VARCHAR,
+    email VARCHAR,
+    phone VARCHAR,
+    resume BLOB,
+    application_date DATE,
+    PRIMARY KEY (applicant_id)
+);
+CREATE TABLE interviews (
+    interview_id INT AUTO_INCREMENT,
+    application_id INT,
+    interview_date DATE,
+    interview_notes TEXT,
+    PRIMARY KEY (interview_id),
+    FOREIGN KEY (application_id) REFERENCES application_status (application_id)
+);
+
+CREATE TABLE skills (
+    skill_id INT AUTO_INCREMENT,
+    skill_name VARCHAR,
+    PRIMARY KEY (skill_id)
+);
+CREATE TABLE applicant_skills (
+    applicant_id INT,
+    skill_id INT,
+    proficiency_level INT,
+    FOREIGN KEY (applicant_id) REFERENCES applicants (applicant_id),
+    FOREIGN KEY (skill_id) REFERENCES skills (skill_id),
+    PRIMARY KEY (applicant_id, skill_id)
+);
+CREATE TABLE experience (
+    experience_id INT AUTO_INCREMENT,
+    applicant_id INT,
+    company_name VARCHAR,
+    position VARCHAR,
+    start_date DATE,
+    end_date DATE,
+    PRIMARY KEY (experience_id),
+    FOREIGN KEY (applicant_id) REFERENCES applicants (applicant_id)
+);
+CREATE TABLE education (
+    education_id INT AUTO_INCREMENT,
+    applicant_id INT,
+    degree VARCHAR,
+    institution VARCHAR,
+    graduation_date DATE,
+    PRIMARY KEY (education_id),
+    FOREIGN KEY (applicant_id) REFERENCES applicants (applicant_id)
+);
+CREATE TABLE references (
+    refe_id INT AUTO_INCREMENT,
+    applicant_id INT,
+    ref_name VARCHAR,
+    ref_email VARCHAR,
+    ref_phone VARCHAR,
+    relationship VARCHAR,
+    PRIMARY KEY (ref_id),
+    FOREIGN KEY (applicant_id) REFERENCES applicants (applicant_id)
+);
