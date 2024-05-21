@@ -1,6 +1,3 @@
--- Use the database
-USE testdb;
-
 -- Insert sample data into Departments table
 INSERT INTO Departments (Dept_name) VALUES ('Human Resources');
 INSERT INTO Departments (Dept_name) VALUES ('Engineering');
@@ -49,20 +46,14 @@ INSERT INTO Referrals (Applicant_id, Ref_name, Ref_email, Ref_phone) VALUES (2, 
 INSERT INTO Referrals (Applicant_id, Ref_name, Ref_email, Ref_phone) VALUES (3, 'Jim Halpert', 'jim.halpert@example.com', '555-8765');
 INSERT INTO Referrals (Applicant_id, Ref_name, Ref_email, Ref_phone) VALUES (4, 'Dwight Schrute', 'dwight.schrute@example.com', '555-4321');
 
--- Insert sample data into Interviews table
-INSERT INTO Interviews (Application_id, Interview_date, Interview_notes) VALUES (1, '2024-06-01', 'Technical interview went well.');
-INSERT INTO Interviews (Application_id, Interview_date, Interview_notes) VALUES (2, '2024-06-02', 'Candidate showed great analytical skills.');
-INSERT INTO Interviews (Application_id, Interview_date, Interview_notes) VALUES (3, '2024-06-03', 'Good understanding of HR processes.');
-INSERT INTO Interviews (Application_id, Interview_date, Interview_notes) VALUES (4, '2024-06-04', 'Excellent sales experience.');
-
 -- Insert sample data into Applications table
 INSERT INTO Applications (Applicant_id, Opening_id, Status, Status_date) VALUES (1, 1, 'Applied', CURDATE());
 INSERT INTO Applications (Applicant_id, Opening_id, Status, Status_date) VALUES (2, 2, 'Applied', CURDATE());
 INSERT INTO Applications (Applicant_id, Opening_id, Status, Status_date) VALUES (3, 3, 'Applied', CURDATE());
 INSERT INTO Applications (Applicant_id, Opening_id, Status, Status_date) VALUES (4, 4, 'Applied', CURDATE());
 
--- Insert sample data into Application_Status table
-INSERT INTO Application_Status (Status_name) VALUES ('Applied');
-INSERT INTO Application_Status (Status_name) VALUES ('Interviewed');
-INSERT INTO Application_Status (Status_name) VALUES ('Offered');
-INSERT INTO Application_Status (Status_name) VALUES ('Rejected');
+-- Insert sample data into Interviews table
+INSERT INTO Interviews (Application_id, Interview_date, Interview_notes) VALUES (1, '2024-06-01', 'Technical interview went well.');
+INSERT INTO Interviews (Application_id, Interview_date, Interview_notes) VALUES (2, '2024-06-02', 'Candidate showed great analytical skills.');
+INSERT INTO Interviews (Application_id, Interview_date, Interview_notes) VALUES (3, '2024-06-03', 'Good understanding of HR processes.');
+INSERT INTO Interviews (Application_id, Interview_date, Interview_notes) VALUES (4, '2024-06-04', 'Excellent sales experience.');

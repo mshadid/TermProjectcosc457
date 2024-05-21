@@ -1,17 +1,23 @@
+-- Create the database
+CREATE DATABASE IF NOT EXISTS testdb;
+
+-- Use the database
+USE testdb;
+
 -- Create Departments table
-CREATE TABLE Departments (
+CREATE TABLE IF NOT EXISTS Departments (
     Dept_no INT PRIMARY KEY AUTO_INCREMENT,
     Dept_name VARCHAR(100) NOT NULL
 );
 
 -- Create Positions table
-CREATE TABLE Positions (
+CREATE TABLE IF NOT EXISTS Positions (
     Position_id INT PRIMARY KEY AUTO_INCREMENT,
     Position_name VARCHAR(100) NOT NULL
 );
 
 -- Create Job_Openings table
-CREATE TABLE Job_Openings (
+CREATE TABLE IF NOT EXISTS Job_Openings (
     Opening_id INT PRIMARY KEY AUTO_INCREMENT,
     Position_id INT,
     Dept_no INT,
@@ -22,7 +28,7 @@ CREATE TABLE Job_Openings (
 );
 
 -- Create Applicants table
-CREATE TABLE Applicants (
+CREATE TABLE IF NOT EXISTS Applicants (
     Applicant_id INT PRIMARY KEY AUTO_INCREMENT,
     First_name VARCHAR(50) NOT NULL,
     Last_name VARCHAR(50) NOT NULL,
@@ -32,14 +38,25 @@ CREATE TABLE Applicants (
     Application_date DATE NOT NULL
 );
 
+-- Create Applications table
+CREATE TABLE IF NOT EXISTS Applications (
+    Application_id INT PRIMARY KEY AUTO_INCREMENT,
+    Applicant_id INT,
+    Opening_id INT,
+    Status VARCHAR(50),
+    Status_date DATE,
+    FOREIGN KEY (Applicant_id) REFERENCES Applicants(Applicant_id),
+    FOREIGN KEY (Opening_id) REFERENCES Job_Openings(Opening_id)
+);
+
 -- Create Skills table
-CREATE TABLE Skills (
+CREATE TABLE IF NOT EXISTS Skills (
     Skill_id INT PRIMARY KEY AUTO_INCREMENT,
     Skill_name VARCHAR(100) NOT NULL
 );
 
 -- Create Experience table
-CREATE TABLE Experience (
+CREATE TABLE IF NOT EXISTS Experience (
     Experience_id INT PRIMARY KEY AUTO_INCREMENT,
     Applicant_id INT,
     Company_name VARCHAR(100),
@@ -50,7 +67,7 @@ CREATE TABLE Experience (
 );
 
 -- Create Education table
-CREATE TABLE Education (
+CREATE TABLE IF NOT EXISTS Education (
     Education_id INT PRIMARY KEY AUTO_INCREMENT,
     Applicant_id INT,
     Degree VARCHAR(100),
@@ -60,7 +77,7 @@ CREATE TABLE Education (
 );
 
 -- Create Referrals table
-CREATE TABLE Referrals (
+CREATE TABLE IF NOT EXISTS Referrals (
     Referral_id INT PRIMARY KEY AUTO_INCREMENT,
     Applicant_id INT,
     Ref_name VARCHAR(100),
@@ -70,7 +87,7 @@ CREATE TABLE Referrals (
 );
 
 -- Create Interviews table
-CREATE TABLE Interviews (
+CREATE TABLE IF NOT EXISTS Interviews (
     Interview_id INT PRIMARY KEY AUTO_INCREMENT,
     Application_id INT,
     Interview_date DATE,
@@ -78,19 +95,8 @@ CREATE TABLE Interviews (
     FOREIGN KEY (Application_id) REFERENCES Applications(Application_id)
 );
 
--- Create Applications table
-CREATE TABLE Applications (
-    Application_id INT PRIMARY KEY AUTO_INCREMENT,
-    Applicant_id INT,
-    Opening_id INT,
-    Status VARCHAR(50),
-    Status_date DATE,
-    FOREIGN KEY (Applicant_id) REFERENCES Applicants(Applicant_id),
-    FOREIGN KEY (Opening_id) REFERENCES Job_Openings(Opening_id)
-);
-
 -- Create Application_Status table
-CREATE TABLE Application_Status (
+CREATE TABLE IF NOT EXISTS Application_Status (
     Status_id INT PRIMARY KEY AUTO_INCREMENT,
     Status_name VARCHAR(50) NOT NULL
 );
